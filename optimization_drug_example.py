@@ -27,7 +27,7 @@ def escitalopram(x):  # weaker efficacy, low toxicity
     efficacy = 0.6 * np.exp(-0.1*(x-4)**2)
     toxicity = 0.1 * x**2 / 120
     return efficacy - escitalopram_lambda * toxicity
-def combined_effect(x1, x2, x3):
+def combined_effect(x1, x2, x3): #combined effect of all three drugs
     return metformin(x1) + lisinopril(x2) + escitalopram(x3)
 
 #%% plot drug efficacies
@@ -131,7 +131,7 @@ print(f"Newton's Method - Optimal Combined Effect: {combined_opt_effect_nm*100:.
 # %%
 metformin_lambda = 0
 for i in range(50):
-    metformin_lambda += 0.1
+    metformin_lambda += 0.01
     opt_dose_metformin, opt_effect_metformin = steepest_ascent(metformin, x0=1.0)
     print(f"Steepest Ascent Method - Optimal Metformin Dose: {opt_dose_metformin:.2f} mg")
     print(f"Steepest Ascent Method - Optimal Metformin Effect: {opt_effect_metformin*100:.2f}%")
@@ -139,7 +139,7 @@ for i in range(50):
     print(f"Steepest Ascent Method - Optimal Combined Dose: {opt_dose_combined:.2f} mg")
     print(f"Steepest Ascent Method - Optimal Combined Effect: {opt_effect_combined*100:.2f}%")
 
-#The best lambda value for metformin that I found seems to be 0.1, which has the highest optimal metformin effect, and contributes to teh highest optimal combined effect.
+#The best lambda value for metformin that I found seems to be 0.01, which has the highest optimal metformin effect, and contributes to the highest optimal combined effect.
 
 
 # %%
