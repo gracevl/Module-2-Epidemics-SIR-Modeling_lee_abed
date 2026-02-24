@@ -51,7 +51,7 @@ def gradient(f, x, h=1e-4):
     """Central difference approximation for f'(x)."""
     return (f(x + h) - f(x - h)) / (2*h)
 
-def steepest_ascent(f, x0, h_step=0.1, tol=1e-6, max_iter=1000):
+def steepest_ascent(f, x0, h_step=0.1, tol=1e-6, max_iter=1000): #when max_iter was lowered from 1000 to 500 there were some doses that were unaffected but some that recommended higher optimal dosages
     x = x0 # update initial guess
     for i in range(max_iter):
         grad = gradient(f, x)
