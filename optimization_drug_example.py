@@ -143,3 +143,9 @@ for i in range(50):
 
 
 # %%
+#1. Increasing lambda values causes the net effect of the drug to become a steeper downward curve. Changing the lambda value seems to decrease the net effect of the drug as dosages get super high. 
+#2. The Newton's method converges much faster than the steepest ascent method
+#3. When max_iter was lowered from 1000 to 500 there were some doses that were unaffected but some that recommended higher optimal dosages
+#4. See graph
+#5. The dosage for the combined optimal effect seems to be 5.40 mg through the steepest ascent method
+#6. The best lambda value for metformin that seems to be 0.01, which has the highest optimal metformin effect, and contributes to the highest optimal combined effect.
