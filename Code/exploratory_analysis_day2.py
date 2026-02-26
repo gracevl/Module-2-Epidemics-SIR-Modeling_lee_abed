@@ -12,6 +12,7 @@ data = pd.read_csv('../Data/mystery_virus_daily_active_counts_RELEASE#1.csv', pa
 def exponential_growth(t, r):
     return np.exp(r * t)
 
+
 # Fit the exponential growth model to the data. 
 # We'll use a handy function from scipy called CURVE_FIT that allows us to fit any given function to our data. 
 # We will fit the exponential growth function to the active cases data. HINT: Look up the documentation for curve_fit to see how to use it.
