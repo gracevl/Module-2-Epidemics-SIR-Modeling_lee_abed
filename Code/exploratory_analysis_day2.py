@@ -28,9 +28,9 @@ plt.ylabel("Active Reported Daily Cases")
 plt.title("Day vs. Active Reported Daily Cases")
 
 # Approximate R0 using this fit
-r0 = np.exp(param * 2)  # Our infectious period is 2 days. R0 should be e^(r * infectious_period)
+r0 = 1+ param[0] * 2 # The infectious period is 2 days. Use 1 + r * D to estimate R0
 print ("Estimated R0:", r0)
-
+print (param)
 # Add the fit as a line on top of your scatterplot.
 plt.plot(x, exponential_growth(x, *param), label='Fitted Exponential Growth Curve')
 plt.legend()
