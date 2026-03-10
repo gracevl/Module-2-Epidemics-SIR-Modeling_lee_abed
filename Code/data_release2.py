@@ -4,7 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-data = pd.read_csv('/Users/zain/Documents/GitHub/Module-2-Epidemics-SIR-Modeling_lee_abed/Data/mystery_virus_daily_active_counts_RELEASE#2.csv')
+data = pd.read_csv('/Users/gracelee/Documents/computational BME/Module-2-Epidemics-SIR-Modeling_lee_abed/Data/mystery_virus_daily_active_counts_RELEASE#2.csv')
 
 # Total population size
 N = 17900
@@ -81,7 +81,7 @@ print(f"Best sigma: ", best_sigma)
 print(f"Best gamma: ", best_gamma)
 print(f"Best SSE: ",   best_sse)
 
-plt.plot(timepoints, data["active reported daily cases"], label="Actual Infections")
+plt.scatter(timepoints, data["active reported daily cases"], label="Actual Infections")
 predicted = SEIR_model(best_beta, best_sigma, best_gamma, S0, E0, I0, R0, timepoints, N)
 plt.plot(timepoints, predicted[2][1:len(timepoints)+1], label="Predicted Infections")
 plt.xlabel("Day")
