@@ -3,9 +3,10 @@ import matplotlib.pyplot as plt
 import numpy as np
 import matplotlib.pyplot as plt
 
+
 # Generative AI tools were used in assistance of writing some portions of code and identifying bugs when they occured
 
-data = pd.read_csv('/Users/zain/Documents/GitHub/Module-2-Epidemics-SIR-Modeling_lee_abed/Data/mystery_virus_daily_active_counts_RELEASE#2.csv')
+data = pd.read_csv('/Users/gracelee/Documents/computational BME/Module-2-Epidemics-SIR-Modeling_lee_abed/Data/mystery_virus_daily_active_counts_RELEASE#2.csv')
 
 # Total population size
 N = 17900
@@ -111,7 +112,7 @@ peak_cases = np.max(predicted_I)
 peak_index = np.argmax(predicted_I)
 
 # Corresponding day
-peak_day = timepoints.iloc[peak_index]
+peak_day = future_timepoints[peak_index]
 
 print("Peak day:", peak_day)
 print("Peak active cases:", peak_cases)
