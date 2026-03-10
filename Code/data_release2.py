@@ -61,6 +61,8 @@ def optimize(timepoints, N, S0, E0, I0, R0, data):
                 sigma_index.append(s)
                 gamma_index.append(g)
 
+#THIS IS WHERE I THINK THE CODE GOES WRONG
+#the "best sse" is super high which is bad, honestly can probably completely scrap this code below...
     best_idx   = np.argmin(SSE)
     best_beta  = beta_index[best_idx]
     best_sigma = sigma_index[best_idx]
