@@ -41,9 +41,9 @@ def SEIR_model(beta, sigma, gamma, S0, E0, I0, R0, timepoints, N):
 
 def optimize(timepoints, N, S0, E0, I0, R0, data):
     # Define the predicted ranges for beta, sigma, and gamma
-    beta = np.arange(.2, 2, .1) #Wide range of values for beta to test, as the contagiousness is unknown
-    sigma = np.arange(.4, .6, .05) #narrower range of sigma values, as we know the latent period is ~2 days, so sigma should be around 0.5 (1/2)
-    gamma = np.arange(1/11, 1/7, .01) #narrower range of gamma values, as we know the infectious period (pre-symptomatic infectious period + symptoma duration) is between 7 and 11 days, so gamma should be between 1/11 and 1/7
+    beta = np.arange(.2, 1.5, .01) #Wide range of values for beta to test, as the contagiousness is unknown
+    sigma = np.arange(.4, .6, .005) #narrower range of sigma values, as we know the latent period is ~2 days, so sigma should be around 0.5 (1/2)
+    gamma = np.arange(1/11, 1/7, .001) #narrower range of gamma values, as we know the infectious period (pre-symptomatic infectious period + symptoma duration) is between 7 and 11 days, so gamma should be between 1/11 and 1/7
     
     beta_index = []
     sigma_index = []
