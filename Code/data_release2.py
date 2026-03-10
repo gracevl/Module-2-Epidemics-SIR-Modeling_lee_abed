@@ -1,6 +1,8 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
+import matplotlib.pyplot as plt
+
 
 data = pd.read_csv('/Users/gracelee/Documents/computational BME/Module-2-Epidemics-SIR-Modeling_lee_abed/Data/mystery_virus_daily_active_counts_RELEASE#2.csv')
 
@@ -39,7 +41,7 @@ def SEIR_model(beta, sigma, gamma, S0, E0, I0, R0, timepoints, N):
 
 def optimize(timepoints, N, S0, E0, I0, R0, data):
     # Define the predicted ranges for beta, sigma, and gamma
-    beta = np.arange(.2, 4, .1) #Wide range of values for beta to test, as the contagiousness is unknown
+    beta = np.arange(.2, 2, .1) #Wide range of values for beta to test, as the contagiousness is unknown
     sigma = np.arange(.4, .6, .05) #narrower range of sigma values, as we know the latent period is ~2 days, so sigma should be around 0.5 (1/2)
     gamma = np.arange(1/11, 1/7, .01) #narrower range of gamma values, as we know the infectious period (pre-symptomatic infectious period + symptoma duration) is between 7 and 11 days, so gamma should be between 1/11 and 1/7
     
@@ -54,7 +56,8 @@ def optimize(timepoints, N, S0, E0, I0, R0, data):
         for s in sigma:
             for g in gamma:
                 predicted = SEIR_model(b, s, g, S0, E0, I0, R0, timepoints, N)
-                I = predicted[2][1]
+                n = len(infections)
+                I = predicted[2][1:n+1] #Extracting the predicted number of infectious individuals at each timepoint from the SEIR model output
                 sse_calc = np.sum((I-infections)**2)
                 SSE.append(sse_calc)
                 beta_index.append(b)
@@ -79,3 +82,12 @@ print(f"Best beta: ",  best_beta)
 print(f"Best sigma: ", best_sigma)
 print(f"Best gamma: ", best_gamma)
 print(f"Best SSE: ",   best_sse)
+
+S, E, I, R = SEIR_model(best_beta, best_sigma, best_gamma, S0, E0, I0, R0, timepoints, N)
+
+n = len(data["active reported daily cases"])
+observed = data["active reported daily cases"].values
+modeled  = I[1:n+1]
+
+print("Observed: ", observed)
+print("Modeled:  ", np.round(modeled, 2))
