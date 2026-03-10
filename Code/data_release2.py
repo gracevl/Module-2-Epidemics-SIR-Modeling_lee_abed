@@ -64,8 +64,6 @@ def optimize(timepoints, N, S0, E0, I0, R0, data):
                 sigma_index.append(s)
                 gamma_index.append(g)
 
-#THIS IS WHERE I THINK THE CODE GOES WRONG
-#the "best sse" is super high which is bad, honestly can probably completely scrap this code below...
     best_idx   = np.argmin(SSE)
     best_beta  = beta_index[best_idx]
     best_sigma = sigma_index[best_idx]
@@ -82,12 +80,3 @@ print(f"Best beta: ",  best_beta)
 print(f"Best sigma: ", best_sigma)
 print(f"Best gamma: ", best_gamma)
 print(f"Best SSE: ",   best_sse)
-
-S, E, I, R = SEIR_model(best_beta, best_sigma, best_gamma, S0, E0, I0, R0, timepoints, N)
-
-n = len(data["active reported daily cases"])
-observed = data["active reported daily cases"].values
-modeled  = I[1:n+1]
-
-print("Observed: ", observed)
-print("Modeled:  ", np.round(modeled, 2))
