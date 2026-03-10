@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 
 # Generative AI tools were used in assistance of writing some portions of code and identifying bugs when they occured
 
-data = pd.read_csv('/Users/gracelee/Documents/computational BME/Module-2-Epidemics-SIR-Modeling_lee_abed/Data/mystery_virus_daily_active_counts_RELEASE#2.csv')
+data = pd.read_csv('/Users/zain/Documents/GitHub/Module-2-Epidemics-SIR-Modeling_lee_abed/Data/mystery_virus_daily_active_counts_RELEASE#2.csv')
 
 # Total population size
 N = 17900
@@ -91,8 +91,18 @@ plt.title("SEIR Model Fit to Data")
 plt.legend()
 plt.show()
 
+future_timepoints = np.arange(1,121)
+future_predicted = SEIR_model(best_beta, best_sigma, best_gamma, S0, E0, I0, R0, future_timepoints, N)
+plt.scatter(timepoints, data["active reported daily cases"], label="Actual Infections")
+plt.plot(future_timepoints, future_predicted[2][1:len(future_timepoints)+1], label="Predicted Infections")
+plt.xlabel("Day")
+plt.ylabel("Active Reported Daily Cases")
+plt.title("SEIR Model Fit to Data")
+plt.legend()
+plt.show()
+
 # Pull predicted infected values
-predicted_I = predicted[2][1:len(timepoints)+1]
+predicted_I = future_predicted[2][1:len(future_timepoints)+1]
 
 # Find peak infections
 peak_cases = np.max(predicted_I)
